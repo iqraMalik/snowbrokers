@@ -1,0 +1,518 @@
+<!-- content -->
+<section class="content-area">
+<?php
+$i=0;
+  foreach( $all_sizes as $sz1 )
+  {
+    if( in_array( $sz1['id'], $get_active_sizes ) )
+    {
+      if( $i == 0 )
+      {
+	//echo $sz1['id'];
+	$sel = $sz1['id'];
+	$get_first_colors = $this->model_products->getTheseColors($sz1['id'], $this->uri->segment(5));
+	//echo "<pre>";
+	//print_r( $get_first_colors );
+	//echo "<pre>";
+	$id = $get_first_colors[0]['id'];
+	
+      }
+    $i++;
+    }
+  }
+$get_allfirst_colors = $this->model_products->getColors($id);
+?>
+<?php
+$j=0;
+foreach( $get_allfirst_colors as $colo1 )
+{
+  if( $j == 0 )
+  {
+    $related_image = $colo1['color_id'];
+    //echo $related_image;
+  }
+  $j++;
+}
+
+$get_all_images = $this->model_products->getImages($related_image, $this->uri->segment(5));
+
+//echo "<pre>";
+//print_r( $get_all_images );
+//echo "</pre>";
+?>
+        <!--   This is for after login header menu bar start -->
+    
+	<?php echo $this->load->view('header/menu_bar'); ?>
+    
+        <!--   This is for after login header menu bar end -->
+            <div class="container">
+		<!-- breadcrumb	 -->
+		<ol class="breadcrumb">
+		  <li><a href="javascript:void(0)">HOME</a></li>
+		  <li><a href="javascript:void(0)">MENS</a></li>
+		  <li class="active">JACKETS</li>
+		</ol>
+		<!-- breadcrumb End	-->
+		<div class="row">
+			<div class="col-md-7">
+				<div class="product-left">
+					<!-- <script type="text/javascript">
+					    function changeImage(a) {
+					        document.getElementById("bannerImage").src=a;
+				       }
+					</script> -->
+					<div class="SliderVertical">
+						<div id="zoom" class="zoom slider">
+						    <?php
+						    $m = 0;
+						    foreach( $get_all_images as $image )
+						    {
+						      if( $m == 0 )
+						      {
+							$main_img = base_url().'admin/images/uploads/normal/'.$image['image'];
+						      }
+						      ?>
+						      <a href="javascript:void(0);" data-image="<?php echo base_url().'admin/images/uploads/normal/'.$image['image'];?>" data-zoom-image="<?php echo base_url().'admin/images/uploads/normal/'.$image['image'];?>"> 
+									<img src="<?php echo base_url().'admin/images/uploads/short_thumb/'.$image['image'];?>" /> 
+								</a>
+						      <?php
+						    }
+						    ?>	
+								
+						</div>
+						
+						<div class = 'scrollbar'></div>
+						
+						
+						
+						
+					</div>
+					<div class="vertical-prev" onclick = "$('.SliderVertical').iosSliderVertical('prevPage');"><img src="<?php echo base_url();?>images/up-arrow.png" alt="down-arrow" /></div>
+					<div class="vertical-next" onclick = "$('.SliderVertical').iosSliderVertical('nextPage');"><img src="<?php echo base_url();?>images/down-arrow.png" alt="up-arrow" /></div>
+				</div>
+				<div class="product-view">
+					<img id="zoom_03" src="<?php echo $main_img;?>" data-zoom-image="<?php echo $main_img;?>"/>
+				</div>	
+
+			</div>	
+			<div class="col-md-5 xtra-marg">
+				<div class="product-name clearfix">
+					<h1>jacket</h1>
+				</div>	
+				<div class="review-section">
+					<div class="product-star">
+						<span><img src="<?php echo base_url();?>images/rating-star.png" alt="star"></span>
+						<span><img src="<?php echo base_url();?>images/rating-star.png" alt="star"></span>
+						<span><img src="<?php echo base_url();?>images/rating-star.png" alt="star"></span>
+						<span><img src="<?php echo base_url();?>images/rating-star.png" alt="star"></span>
+					</div>
+					<div class="rating">
+						<span> 94 Ratings</span>
+						<span>|</span>
+						<span>47 Reviews</span>
+					</div>	
+				</div>
+				<ul class="add-area">
+					<li><a href="javascript:void(0)"><span class="review">&nbsp;</span>Write a Review</a></li>
+					<!--<li><a href="javascript:void(0)"><span class="my-wishlist">&nbsp;</span> My Wishlist</a></li>
+					<li><a href="javascript:void(0)"><span class="compare">&nbsp;</span> to compare</a></li>-->
+				</ul>	
+				<div class="product-size clearfix">
+					<div class="product-box">
+						<h3>SELECT COLOR : </h3>
+						<!--<div class="select-color">
+							<a href="javascript:void(0)"><img src="<?php echo base_url();?>images/color.png" alt="color"></a>
+						</div>-->
+						
+						<div class="select-color">
+						      <ul class="select--product-color">
+							<?php
+							//echo "<pre>";
+							//print_r( $get_allfirst_colors );
+							//echo "</pre>";
+							$s = 1;
+							foreach( $get_allfirst_colors as $colo )
+							{
+							  //echo $colo['quantity'];
+							  ?>
+							  
+							  <li onclick="change_color(<?php echo $colo['id'];?>,<?php echo $colo['product_related_size_id'];?> )" class="" style=" background-color : <?php echo $colo['color_code'];?>">
+								  <a id="pop_<?php echo $s;?>" title="<?php echo "Available :".$colo['quantity'];?>" <?php if( $s == 1 ){ ?> class="col_select" <?php }?> href="javascript:void(0)">
+									  
+								  </a>
+							  </li>
+							  <script>
+							$(function() {
+							    $( "#pop_<?php echo $s;?>" ).tooltip({
+							    show: {
+							    effect: "slideDown",
+							    delay: 250
+							    }
+							    });
+							})
+							</script>
+							  <?php
+							  $s++;
+							}
+							?>
+							     
+						      </ul>
+					      </div>
+					</div>	
+					<div class="product-box">
+					  <?php
+					  //echo "<pre>";
+					  //print_r( $all_sizes );
+					  //echo "</pre>";
+					  //
+					  //echo "<pre>";
+					  //print_r( $get_active_sizes );
+					  //echo "</pre>";
+					  ?>
+						<div class="clearfix">
+							<h3 class="pull-left">SELECT SIZE : </h3>
+							<a href="javascript:void(0)" class="pull-right select-size">SIZE CHART</a>
+						</div>
+						<ul class="size-box clearfix">
+						  <?php
+						  foreach( $all_sizes as $sz )
+						  {
+						    if( in_array( $sz['id'], $get_active_sizes ) )
+						    {
+						    $class = '';  
+						    }
+						    else
+						    {
+						      $class = 'disable';  
+						    }
+						    ?>
+						    <li class="<?php if( $sel == $sz['id'] ){  echo $class.'selected'; }else{ echo $class;}?>"><?php echo ucwords(stripslashes($sz['size_type']));?></li>
+						    <?php
+						  }
+						  ?>
+							<!--<li>XS</li>
+							<li>S</li>
+							<li>M</li>
+							<li>L</li>
+							<li>XL</li>-->
+						</ul>	
+					</div>	
+				</div>	
+				<div class="price clearfix">
+					<div class="price-size pull-left">
+						<h2>Price $80</h2>
+						<button class="btn btn-default">ADD TO ORDER</button>
+					</div>	
+					<div class="price-size pull-right">
+						<ul>
+							<li>Call 1800 208 9898 (toll free)<br/> for from our product expert.</li>
+							<li>EMI Option</li>
+							<li>Product Enquiry</li>
+							<li>30 Day Replacement Guarantee</li>
+						</ul>	
+					</div>	
+				</div>	
+			</div>	
+		</div>	
+		<div class="row">
+			<div class="col-md-8 col-sm-8">
+				<div class="info">
+					<h3>Product Info & Care</h3>
+				</div>	
+				<p class="product-info">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque 
+ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. </p>
+				<div class="care">
+					<div class="row">
+						<div class="col-md-3 col-sm-3 col-xs-3">
+							<p>Fabric</p>
+						</div>	
+						<div class="col-md-6 col-sm-8 col-xs-5">
+							<p>Cotton</p>
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col-md-3 col-sm-3 col-xs-3">
+							<p>Sleeves</p>
+						</div>	
+						<div class="col-md-6 col-sm-8 col-xs-5">
+							<p>3/4th Sleeve</p>
+						</div>	
+					</div>	
+					<div class="row">
+						<div class="col-md-3 col-sm-3 col-xs-3">
+							<p>Neck</p>
+						</div>	
+						<div class="col-md-6 col-sm-8 col-xs-5">
+							<p>Round Neck</p>
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col-md-3 col-sm-3 col-xs-3">
+							<p>Fit</p>
+						</div>	
+						<div class="col-md-6 col-sm-8 col-xs-5">
+							<p>Regular</p>
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col-md-3 col-sm-3 col-xs-3">
+							<p>Length</p>
+						</div>	
+						<div class="col-md-6 col-sm-8 col-xs-5">
+							<p>Thigh Length</p>
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col-md-3 col-sm-3 col-xs-3">
+							<p>Color</p>
+						</div>	
+						<div class="col-md-6 col-sm-8 col-xs-5">
+							<p>Off White</p>
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col-md-3 col-sm-3 col-xs-3">
+							<p>SKU</p>
+						</div>	
+						<div class="col-md-6 col-sm-8 col-xs-5">
+							<p>SA038WA36SBNINDFAS</p>
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col-md-3 col-sm-3 col-xs-3">
+						</div>	
+						<div class="col-md-6 col-sm-8 col-xs-5">
+							<a href="javascript:void(0)">Report inaccurate/incomplete information here</a>
+						</div>	
+					</div>	
+				</div>	
+			</div>
+			<div class="col-md-4" style="overflow: hidden;">
+				<div class="info">
+					<h3>you may also like</h3>
+				</div>
+				<div class="other-product" id="owl-demo">
+					<div class="item">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="other-img">
+									<img src="<?php echo base_url();?>images/other-1.jpg" alt="like">
+								</div>	
+								<div class="other-detail">
+									<a href="javascript:void(0)">Sangria</a>
+									<p>Veniam  quinostru</p>
+									<span>&euro;399</span>
+								</div>	
+							</div>	
+							<div class="col-md-12 other-marg">
+								<div class="other-img">
+									<img src="<?php echo base_url();?>images/other-2.jpg" alt="like">
+								</div>	
+								<div class="other-detail">
+									<a href="javascript:void(0)">Sangria</a>
+									<p>Veniam  quinostru</p>
+									<span>&euro;399</span>
+								</div>	
+							</div>
+							
+						</div>
+					</div>
+					<div class="item">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="other-img">
+									<img src="<?php echo base_url();?>images/other-3.jpg" alt="like">
+								</div>	
+								<div class="other-detail">
+									<a href="javascript:void(0)">Sangria</a>
+									<p>Veniam  quinostru</p>
+									<span>&euro;399</span>
+								</div>	
+							</div>	
+							<div class="col-md-12 other-marg">
+								<div class="other-img">
+									<img src="<?php echo base_url();?>images/other-4.jpg" alt="like">
+								</div>	
+								<div class="other-detail">
+									<a href="javascript:void(0)">Sangria</a>
+									<p>Veniam  quinostru</p>
+									<span>&euro;399</span>
+								</div>	
+							</div>
+							
+						</div>
+					</div>
+					<div class="item">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="other-img">
+									<img src="<?php echo base_url();?>images/other-1.jpg" alt="like">
+								</div>	
+								<div class="other-detail">
+									<a href="javascript:void(0)">Sangria</a>
+									<p>Veniam  quinostru</p>
+									<span>&euro;399</span>
+								</div>	
+							</div>	
+							<div class="col-md-12 other-marg">
+								<div class="other-img">
+									<img src="<?php echo base_url();?>images/other-2.jpg" alt="like">
+								</div>	
+								<div class="other-detail">
+									<a href="javascript:void(0)">Sangria</a>
+									<p>Veniam  quinostru</p>
+									<span>&euro;399</span>
+								</div>	
+							</div>
+							
+						</div>
+					</div>
+					<div class="item">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="other-img">
+									<img src="<?php echo base_url();?>images/other-3.jpg" alt="like">
+								</div>	
+								<div class="other-detail">
+									<a href="javascript:void(0)">Sangria</a>
+									<p>Veniam  quinostru</p>
+									<span>&euro;399</span>
+								</div>	
+							</div>	
+							<div class="col-md-12 other-marg">
+								<div class="other-img">
+									<img src="<?php echo base_url();?>images/other-4.jpg" alt="like">
+								</div>	
+								<div class="other-detail">
+									<a href="javascript:void(0)">Sangria</a>
+									<p>Veniam  quinostru</p>
+									<span>&euro;399</span>
+								</div>	
+							</div>
+							
+						</div>
+					</div>
+					<div class="item">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="other-img">
+									<img src="<?php echo base_url();?>images/other-1.jpg" alt="like">
+								</div>	
+								<div class="other-detail">
+									<a href="javascript:void(0)">Sangria</a>
+									<p>Veniam  quinostru</p>
+									<span>&euro;399</span>
+								</div>	
+							</div>	
+							<div class="col-md-12 other-marg">
+								<div class="other-img">
+									<img src="<?php echo base_url();?>images/other-2.jpg" alt="like">
+								</div>	
+								<div class="other-detail">
+									<a href="javascript:void(0)">Sangria</a>
+									<p>Veniam  quinostru</p>
+									<span>&euro;399</span>
+								</div>	
+							</div>
+							
+						</div>
+					</div>
+					<div class="item">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="other-img">
+									<img src="<?php echo base_url();?>images/other-3.jpg" alt="like">
+								</div>	
+								<div class="other-detail">
+									<a href="javascript:void(0)">Sangria</a>
+									<p>Veniam  quinostru</p>
+									<span>&euro;399</span>
+								</div>	
+							</div>	
+							<div class="col-md-12 other-marg">
+								<div class="other-img">
+									<img src="<?php echo base_url();?>images/other-4.jpg" alt="like">
+								</div>	
+								<div class="other-detail">
+									<a href="javascript:void(0)">Sangria</a>
+									<p>Veniam  quinostru</p>
+									<span>&euro;399</span>
+								</div>	
+							</div>
+							
+						</div>
+					</div>
+					<div class="item">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="other-img">
+									<img src="<?php echo base_url();?>images/other-1.jpg" alt="like">
+								</div>	
+								<div class="other-detail">
+									<a href="javascript:void(0)">Sangria</a>
+									<p>Veniam  quinostru</p>
+									<span>&euro;399</span>
+								</div>	
+							</div>	
+							<div class="col-md-12 other-marg">
+								<div class="other-img">
+									<img src="<?php echo base_url();?>images/other-2.jpg" alt="like">
+								</div>	
+								<div class="other-detail">
+									<a href="javascript:void(0)">Sangria</a>
+									<p>Veniam  quinostru</p>
+									<span>&euro;399</span>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>	
+	</div>
+</section>
+<!-- content End -->
+
+<script type="text/javascript">
+	$(window).load(function() {
+		$('.SliderVertical').iosSliderVertical({
+			desktopClickDrag: true
+		});
+	});
+	$(document).ready(function() {
+		$("#owl-demo").owlCarousel({
+	    	autoPlay: 3000, //Set AutoPlay to 3 seconds
+	    	navigation : true,
+	    	pagination : false,
+		    items : 2,
+	        itemsCustom : false,
+	        itemsDesktop : [1199, 2],
+	        itemsDesktopSmall : [979, 2],
+	        itemsTablet : [768, 3],
+	        itemsTabletSmall : false,
+	        itemsMobile : [479, 2],
+	    });
+	
+	
+		$('#bannerImage').elevateZoom({
+		    zoomType: "inner",
+			cursor: "crosshair",
+			zoomWindowFadeIn: 500,
+			zoomWindowFadeOut: 750,
+			zoomWindowWidth: 552,
+			zoomWindowHeight: 362,
+	   });
+	   
+	   //initiate the plugin and pass the id of the div containing gallery images 
+		$("#zoom_03").elevateZoom({
+			zoomType : "lens",
+			containLensZoom : true,
+			gallery : 'zoom',
+			cursor : 'pointer',
+			galleryActiveClass : "active",
+			zoomWindowWidth: 552,
+			zoomWindowHeight: 362,
+		}); 
+		
+	});
+</script>

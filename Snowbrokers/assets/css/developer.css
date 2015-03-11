@@ -1,0 +1,89 @@
+@charset "utf-8";
+/* General css created by ESOLZ TECHNOLOGY */
+
+
+.sulisting ul li a 
+{
+  color: #000;
+  font-size: 14px;
+  /*text-transform: uppercase;*/
+}
+Sent at 2:57 PM on Saturday
+abhijit:  .sulisting ul li {
+  display: block;
+  padding: 5px 0;
+}
+
+/*added by soumili 1/09/2014*/
+.sub_loder {
+position: absolute;
+right: 84%;
+top: 224px;
+display: block;
+background: url(../../images/142.GIF) no-repeat;
+height: 25px;
+width: 80px;
+}
+
+/*added by sourav 1/09/2014*/
+.details-show label {
+    color: #0A0A0A;
+    float: left;
+    margin-top: 0px;
+    width: 135px;
+}
+.details-show {
+    color: #0A0A0A;
+}
+.post-address input[type="password"] {
+	width: 100%;
+	border: 1px solid #e1e2e2;
+	background: #f2f2f2;
+	padding: 8px 13px;
+	color: #000;
+}
+/*anupam*/
+/*added by anupam on 02 nd sept 2014*/
+.col_select{
+  border: 2px solid black;
+}
+/*added by anupam on 04 th Sept 2014*/
+ul.size-box li:hover, ul.size-box li.selected {
+  background: none repeat scroll 0 0 #000;
+  color: #fff;
+  display: block;
+}
+ul.size-box li.disable:hover, ul.size-box li.disable {
+text-decoration: line-through;
+}
+/*anupam*/
+
+/*added by sourav on 03 nd sept 2014*/
+
+ul.size-box li a:hover, ul.size-box li.active a {
+   background: none repeat scroll 0 0 #000;
+   color: #fff;
+   display: block;
+}
+/* Responsive css created by ESOLZ TECHNOLOGY */
+
+body {
+  position: static !important;
+}
+
+.text_black{
+  padding: 5px;
+  color: black;
+}
+.col-sm-8 P{
+  padding: 5px;
+  color: black;  
+}
+.new_drop{
+  padding-top: 30px;
+  margin-top: -30px;
+}
+.new_drop_inner{
+  border: 1px solid #000;
+  background: #daf5fc;
+}

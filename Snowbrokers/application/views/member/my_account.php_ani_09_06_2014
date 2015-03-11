@@ -1,0 +1,342 @@
+<?php
+//echo $this->session->userdata('user_id')."$$$$";
+$dataone_fetch=$this->modelsignup->GetUserDetail($this->session->userdata('user_id'));
+//print_r($dataone_fetch);
+$data=$dataone_fetch[0];
+?>
+<section class="innerpage_page">
+	
+	<div class="container">
+		<div class="row">
+			<?php $this->load->view('sidebarblog/sidebar_blog_account.php')?>
+			
+			<div class="col-md-9 col-sm-8" style="">
+				<div class="sgn_up_out myacnt_lft">
+				<?php
+				if($this->session->userdata('success_msg')!='')
+				{
+				?>
+				<div class="alert_success">
+				<?php
+					echo $this->session->userdata('success_msg');
+					$this->session->unset_userdata('success_msg');
+				?>
+				</div>
+				<?php
+				}
+				if($this->session->userdata('error_msg')!='')
+				{
+				?>
+				<div class="alert_error">
+				<?php
+					echo $this->session->userdata('error_msg');
+					$this->session->unset_userdata('error_msg');
+				?>
+				</div>
+				<?php
+				}
+				
+				?>
+					<h4>MY ACCOUNT</h4>
+					<form class="spcing_otr" id="registration_form" name="registration_form" method="post" enctype="multipart/form-data" action="<?php echo site_url('signup/edit_memeber')?>" autocomplete="off">
+					<input type="hidden" id="user_id" name="user_id" value="<?php echo $data->id;?>">
+					<input type="hidden" id="email_hidden_error" name="email_hidden_error" value="">
+					<input type="hidden" id="email_format" name="email_format" value=1>
+					<input type="hidden" id="email_hidden" name="email_hidden" value="">
+					<input type="hidden" id="facebook_id" name="facebook_id" value="<?php echo $data->facebook_id;?>">
+					<input type="hidden" id="pre_image" name="pre_image" value="<?php echo $data->profile_image;?>">
+						<div class="frst_nm_rw clearfix">
+							<input type="text" class="frst_nm_txt_bx"  id="first_name" name="first_name" placeholder="First Name" value="<?php echo $data->first_name;?>"/>
+							<input type="text" class="frst_nm_txt_bx"  id="last_name" name="last_name" placeholder="Last Name" value="<?php echo $data->last_name;?>"/>
+						</div>
+						<div id="name_error" style="color: red;margin-bottom: 20px;"></div>
+						
+						
+						<div class="frst_nm_rw clearfix">
+							<input type="text" class="txt_bx_ptlcd" id="user_address" name="user_address" placeholder="Address" value="<?php echo $data->address;?>"/>
+						</div>
+						<div id="user_address_error" style="color: red;margin-bottom: 20px;"></div>
+						
+						<div class="frst_nm_rw clearfix">
+							<input type="text" class="txt_bx_ptlcd" id="user_city" name="user_city" placeholder="City" value="<?php echo $data->city;?>"/>
+						</div>
+						<div id="user_city_error" style="color: red;margin-bottom: 20px;"></div>
+						
+						<div class="frst_nm_rw clearfix">
+							<input type="text" class="txt_bx_ptlcd" id="province" name="province" placeholder="Province" value="<?php echo $data->province;?>"/>
+						</div>
+						<div id="province_error" style="color: red;margin-bottom: 20px;"></div>
+						
+						
+						<div class="frst_nm_rw clearfix">
+							<input type="text" class="txt_bx_ptlcd" id="postal_code" name="postal_code" placeholder="Postal Code" value="<?php echo $data->postal_code;?>"/>
+						</div>
+						<div id="postal_code_error" style="color: red;margin-bottom: 20px;"></div>
+						
+						
+						<div class="frst_nm_rw clearfix">
+							<input type="text" class="txt_bx_ptlcd" id="country" name="country" placeholder="Country" value="<?php echo $data->country;?>"/>
+						</div>
+						<div id="country_error" style="color: red;margin-bottom: 20px;"></div>
+						
+						
+						<div class="frst_nm_rw clearfix">
+							<input type="text" class="txt_bx_ptlcd" id="mobile_number" name="mobile_number" placeholder="Mobile Number" value="<?php echo $data->mobile_number;?>"/>
+						</div>
+						<div id="mobile_number_error" style="color: red;margin-bottom: 20px;"></div>
+						
+						
+						<div class="frst_nm_rw clearfix">
+							<input type="text" class="txt_bx_ph_no" id="phone_number" name="phone_number" placeholder="Phone Number" value="<?php echo $data->phone_number;?>"/>
+						</div>
+						<div id="phone_number_error" style="color: red;margin-bottom: 20px;"></div>
+						
+						
+						<div class="frst_nm_rw clearfix">
+							<input type="text" class="txt_bx_eml" id="email" name="email" placeholder="Email" value="<?php echo $data->email;?>"/>
+						</div>
+						<div id="email_error" style="color: red;margin-bottom: 20px;"></div>
+						
+						
+						<?php
+						if($data->facebook_id=='')
+						{
+						?>
+						<div class="frst_nm_rw clearfix">
+							<input type="password" class="txt_bx_psw" id="password" name="password" placeholder="Password"/>
+						</div>
+						<div id="password_error" style="color: red;margin-bottom: 20px;"></div>
+						<div class="frst_nm_rw clearfix">
+							<input type="password" class="txt_bx_psw" id="retype_password" name="retype_password" placeholder="Confirm Password"/>
+						</div>
+						<div id="retype_password_error" style="color: red;margin-bottom: 20px;"></div>
+						<!-- <span class="bcm_tsk">Become a Task-Aroo <a href="#">Sign Up Here</a></span> -->
+						<div class="frst_nm_rw clearfix">
+													<textarea placeholder="aboutme" class="nm_crd_txt_b_txtarea" id="aboutme"  cols="43" rows="15" name="aboutme"><?php echo $data->about_myself;?></textarea>
+                                                </div>
+                                                <div id="aboutme_error" style="color: red;margin-bottom: 20px;"></div>
+						<?php
+						}
+						if($data->profile_image!='')
+						{
+							//$img_path=base_url().'admin/images/user_profile_image/thumbs/'.$data->profile_image;
+							$pos=strpos($data->profile_image, 'http');
+								
+							if($pos===false)
+							{
+								$img_path=base_url().'profile_pic/thumbnail/'.$data->profile_image;
+							}
+							else
+							{
+								$img_path=$data->profile_image;
+							}
+						?>
+						<div class="frst_nm_rw clearfix">
+							<figure class="img_border">
+								<img src="<?php echo $img_path;?>">
+							</figure>
+						</div>
+						<?php
+						}
+						?>
+						<div class="brwse_img">
+							<input type="file" id="image" name="image" class=""/>
+						</div>
+						<div id="image_error" style="color: red;margin-bottom: 20px;"></div>
+						
+						<span class="sgnup">
+							<input type="button" class="sgn_btu" value="Update My Account" onclick="check_validation();"/>
+						</span>
+						
+						
+						
+					</form>
+						
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</section>
+<script>
+	function check_validation()
+	{
+		var has_error=0;
+		if ($.trim($('#first_name').val())=='')
+		{
+			$('#name_error').html('First name is required.');
+			$('#first_name').focus();
+			has_error=1;
+			return false;
+		}
+		else if ($.trim($('#last_name').val())=='')
+		{
+			$('#name_error').html('Last name is required.');
+			$('#last_name').focus();
+			has_error=1;
+			return false;
+		}
+		else
+		{
+			$('#name_error').html('');
+		}
+		if ($.trim($('#postal_code').val())=='')
+		{
+			$('#postal_code_error').html('Postal code is required.');
+			$('#postal_code').focus();
+			has_error=1;
+			return false;
+		}
+		else
+		{
+			$('#postal_code_error').html('');
+		}
+		if ($.trim($('#postal_code').val())=='')
+		{
+			$('#postal_code_error').html('Postal code is required.');
+			$('#postal_code').focus();
+			has_error=1;
+			return false;
+		}
+		else
+		{
+			$('#postal_code_error').html('');
+		}
+		
+		if ($.trim($('#phone_number').val())=='')
+		{
+			$('#phone_number_error').html('Phone number is required.');
+			$('#phone_number').focus();
+			has_error=1;
+			return false;
+		}
+		else
+		{
+			$('#phone_number_error').html('');
+		}
+		if ($.trim($('#email').val())=='')
+		{
+			$('#email_error').html('Email is required.');
+			$('#email').focus();
+			has_error=1;
+			return false;
+		}
+		else if ($.trim($('#email').val())!='')
+		{
+			
+			if (!isValidEmailAddress($('#email').val()))
+			{
+				$('#email_error').html('Please enter valid email');
+				$('#email').focus();
+				has_error=1;
+				return false;	
+			}
+			else
+			{
+				$.ajax({
+			url: "<?php echo base_url(); ?>index.php/signup/check_email_update",
+			data: {email:$('#email').val(),user_id:$('#user_id').val()},
+			async: false,
+			success: function(response) {
+
+				var response_array = response.split('[SEPARETOR]');
+	
+				if (response_array[1]==0) {
+				    $("#email_error").html('');
+				    $("#email_hidden").val('');
+				    //email_status=1;
+				    //var email_value=0;
+					if (($('#password').val()!='') && ($('#facebook_id').val()==''))
+					{
+						if ($('#password').val().length<6)
+						{
+						    $('#password_error').html('Password should not be less than 6 charecters');
+						    $('#password').focus();
+						    has_error=1;
+						    return false;
+						}
+						else
+						{
+							$('#password_error').html('');
+						}
+						if ($.trim($('#retype_password').val())=='')
+						{
+						    $('#retype_password_error').html('Confirm Password is required');
+						    $('#retype_password').focus();
+						    has_error=1;
+						    return false;
+						}
+						else if (($.trim($('#retype_password').val())!='') && ($.trim($('#password').val())!=$.trim($('#retype_password').val())))
+						{
+						    $('#retype_password_error').html('Password and confirm password should be same');
+						    $('#retype_password').focus();
+						    has_error=1;
+						    return false;
+						}
+						else
+						{
+						    $('#retype_password_error').html('');
+						}
+					}
+					if($.trim($('#aboutme').val())=='')
+					{
+						$('#aboutme_error').html('About me. Please');
+						has_error=1;
+						return false;
+					}
+					if ($('#image').val()!='')
+					{
+					   var image_type=$('#image').val();
+					   var re = /(\.jpg|\.jpeg|\.bmp|\.gif|\.png)$/i;
+					   if(!re.exec(image_type))
+					   {
+						$("#image_error").html("Only .jpg, .png, .jpeg, .gif are allowed");
+						has_error=1;
+						return false;
+					   }
+					   else
+					   {
+						$("#image_error").html('');
+					   }
+					}
+					
+				}
+				else
+				{
+				    $("#email_error").html('This email is already registered.');
+				//var email_value=1;
+				    $("#email_hidden").val('1');
+				    has_error=1;
+				    return false;
+				}
+				//return $("#email_hidden").val();
+			}
+		});
+				
+				//return false;
+				
+			}
+		}
+		else
+		{
+			$("#email_error").html('');
+		}
+		//if (email_status==1)
+		//{
+		//		
+		//}
+		if (has_error==0)
+		{
+			document.getElementById('registration_form').submit();
+		}
+	   
+ 
+	}
+	
+	
+	function isValidEmailAddress(emailAddress)
+	{
+		var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+		return pattern.test(emailAddress);
+	};
+</script>

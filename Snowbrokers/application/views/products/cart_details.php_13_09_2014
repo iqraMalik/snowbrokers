@@ -1,0 +1,129 @@
+<section class="content-area">
+    <!--   This is for after login header menu bar start -->
+
+    <?php echo $this->load->view('header/menu_bar'); ?>
+
+    <!--   This is for after login header menu bar end -->
+    <div class="container">
+        <div class="shipping-content clearfix">
+            <div class="col-md-12 side-r">
+                    <h1>My Cart</h1>
+            </div>
+            <div class="advance-feture">
+                    <div class="col-md-12 side-r">
+                        <div class="product">
+                            <div class="product-row">
+                                <div class="product-cell" style="text-align: left;"></div>
+                                <div class="product-cell" style="text-align: left;"> Product </div>
+                                <div class="product-cell" style="text-align: left;"> Qty </div>
+                                <div class="product-cell" style="text-align: left;"> Size </div>
+                                <div class="product-cell" style="text-align: left;"> Color </div>
+                                <div class="product-cell" style="text-align: left;"> Delivery </div>
+                                <div class="product-cell" style="text-align: left;"> Price </div>
+                                <div class="product-cell" style="text-align: left;"> Shipping Charges </div>
+                                <div class="product-cell" style="text-align: left;"> Total </div>
+                                <div class="product-cell" style="text-align: left;"></div>
+                            </div>
+                            <?php
+                            //print_r($cart_items);
+                            if($cart_items != '0')
+                            {
+                                $cart_products = $this->modelhome->get_CartProducts($cart_items->id);
+                                if($cart_products!='0')
+                                {
+                                    foreach($cart_products as $value)
+                                    {
+                                        $get_product_details = $this->modelhome->get_Product_Details($value->product_id,$value->size_id,$value->color_id);
+                                        $GET_currency_code = $this->modelhome->get_CurrencyDetails($get_product_details['product_currency']);
+                                        $get_color = $this->modelhome->get_singleProductColor($value->color_id);
+                                        $get_size = $this->modelhome->get_singleProductSize($value->size_id);
+                            ?>
+                            <div class="product-row" id="cartItem_<?php echo $value->id; ?>">
+                                <div class="product-cell" style="text-align: left;"> <?php if($get_product_details['image_name']!='0') { ?><img alt="<?php echo $get_product_details['product_name']; ?>" src="<?php echo base_url();?>admin/images/uploads/short_thumb/<?php echo $get_product_details['image_name']; ?>"><?php } ?></div>
+                                <div class="product-cell" style="text-align: left;"> <?php if($get_product_details['product_name']!='0'){echo $get_product_details['product_name'];}?> </div>
+                                <div class="product-cell" style="text-align: left;"> <?php echo $value->quantity;?> </div>
+                                <div class="product-cell" style="text-align: left;"> <?php if($get_size!='0') {echo $get_size->size_type;} else {echo "-";} ?> </div>
+                                <div class="product-cell" style="text-align: left;"> <?php if($get_color!='0') {echo $get_color->color_code;} else {echo "-";} ?> </div>
+                                <div class="product-cell" style="text-align: left;"> 3-5 Businness Days </div>
+                                <div class="product-cell" style="text-align: left;"> <?php echo $GET_currency_code->currrency_symbol." ".$get_product_details['price']; ?> </div>
+                                <div class="product-cell" style="text-align: left;"> FREE </div>
+                                <div class="product-cell" style="text-align: left;"> <?php echo $GET_currency_code->currrency_symbol." ".$value->total_amount; ?> </div>
+                                <div class="product-cell" style="text-align: left;"> <img class="remove_catItem" id="remove_<?php echo $value->id; ?>" src="<?php echo base_url();?>images/list_remove112.png" /> </div>
+                            </div>
+                            <?php
+                                    }
+                                }
+                                else
+                                {
+                            ?>
+                            <div class="product-row">
+                                <div class="product-cell" style="text-align: left;">No items in cart</div>
+                            </div>
+                            <?php
+                                }
+                            }
+                            else
+                            {
+                            ?>
+                            <div class="product-row">
+                                <div class="product-cell" style="text-align: left;">No items in cart</div>
+                            </div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-md-12 side-r">
+                        <div class="sub-total clearfix">
+                            <div class="post-address-cell pull-right">
+                                <button class="btn btn-default" id="order_confirm">
+                                    <span>CONFIRM ORDER</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $(".remove_catItem").click(function() {
+            var id = $(this).attr("id");
+            var cart_id_array = id.split("_");
+            var cart_id = cart_id_array[1];
+            var r = confirm("Are you sure to delete this Item from your cart?");
+            if (r==true) {
+                $.ajax({
+		    url: "<?php echo base_url(); ?>index.php/shipping_details/remove_CartItem",
+		    data: {
+			cart_id:cart_id
+		    },
+		    success: function(response) {
+                        //alert(response);
+			//var ans = response.split('@@');
+                        if (response==1)
+                        {
+                            $('#cartItem_'+cart_id).remove();
+                        }
+		    }
+                });
+            }
+            
+        });
+        $("#order_confirm").click(function() {
+            $.ajax({
+                url: "<?php echo base_url(); ?>index.php/shipping_details/confirm_Order",
+                success: function(response) {
+                    //alert(response);
+                    //var ans = response.split('@@');
+                    if (response==1 || response==2 || response==0)
+                    {
+                        $(location).attr('href',"<?php echo site_url('shipping_details/my_cart')?>");
+                    }
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,187 @@
+<?php
+$shipping_data = $this->modelhome->get_allShippingAddress();
+$product_order_details = $this->modelhome->product_order_details();
+$get_product_details = $this->modelhome->get_Product_Details($product_order_details['product_id'],$product_order_details['size_id'],$product_order_details['color_id']);
+$GET_currency_code = $this->modelhome->get_CurrencyDetails($get_product_details['product_currency']);
+//$get_color = $this->modelhome->get_singleProductColor($value->color_id);
+//$get_size = $this->modelhome->get_singleProductSize($value->size_id);
+?>
+<!-- content -->
+<section class="content-area">
+	<!--   This is for after login header menu bar start -->
+    
+	<?php echo $this->load->view('header/menu_bar'); ?>
+    
+        <!--   This is for after login header menu bar end -->
+	<div class="container">
+		<div class="shipping-content clearfix">
+			<div class="col-md-8 side-r">
+				<h1>Shipping Address</h1>
+				<?php echo $this->session->userdata('prodict_id'); echo "<br/>row_id-".$this->session->userdata('row_id'); ?>
+				<div class="address-area">
+					<form name="add_cart" id="add_cart" action="<?php echo site_url('shipping_details/add_toCart');?>" method="post" onsubmit="return validate_Cart();">
+					<div class="post-address">
+						<label>First Name <span class="star-color">*</span></label>
+						<div class="post-address-cell">
+							<input type="text" name="f_name" id="f_name" class="required" label="First Name" value="<?php echo $shipping_data['f_name'];?>" placeholder="">
+							<span class="error_div" style="color:red;" id="f_name_error"></span>
+						</div>	
+					</div>	
+					<div class="post-address">
+						<label>Last name <span class="star-color">*</span></label>
+						<div class="post-address-cell">
+							<input type="text" name="l_name" id="l_name" class="required" label="Last Name" value="<?php echo $shipping_data['l_name'];?>" placeholder="">
+							<span class="error_div" style="color:red;" id="l_name_error"></span>
+						</div>	
+					</div>
+					<div class="post-address">
+						<label>Company name <span class="star-color">*</span></label>
+						<div class="post-address-cell">
+							<input type="text" name="company_name" id="company_name" class="required" label="Company name" value="<?php echo $shipping_data['company_name'];?>" placeholder="">
+							<span class="error_div" style="color:red;" id="company_name_error"></span>
+						</div>	
+					</div>
+					<div class="post-address">
+						<label>Mobile <span class="star-color">*</span></label>
+						<div class="post-address-cell">
+							<input type="text" name="mobile" id="mobile" class="required qty_value" label="Mobile" value="<?php echo $shipping_data['mobile'];?>" placeholder="">
+							<span class="error_div" style="color:red;" id="mobile_error"></span>
+						</div>	
+					</div>
+					<div class="post-address">
+						<label>Alternate Phone <span class="star-color">*</span></label>
+						<div class="post-address-cell">
+							<input type="text" name="alternate_mobile" id="alternate_mobile" class="required qty_value" label="Alternate Phone" value="<?php echo $shipping_data['alternate_mobile'];?>" placeholder="">
+							<span class="error_div" style="color:red;" id="alternate_mobile_error"></span>
+						</div>	
+					</div>
+					<div class="post-address">
+						<label>Address <span class="star-color">*</span></label>
+						<div class="post-address-cell">
+							<input type="text" name="address" id="address" class="required" label="Address" value="<?php echo $shipping_data['address'];?>" placeholder="">
+							<span class="error_div" style="color:red;" id="address_error"></span>
+						</div>	
+					</div>
+					<div class="post-address">
+						<label>Country <span class="star-color">*</span></label>
+						<div class="post-address-cell">
+							<input type="text" name="country" id="country" class="required" label="Country" value="<?php echo $shipping_data['country'];?>" placeholder="">
+							<span class="error_div" style="color:red;" id="country_error"></span>
+						</div>	
+					</div>
+					<div class="post-address">
+						<label>State/Region <span class="star-color">*</span></label>
+						<div class="post-address-cell">
+							<input type="text" name="state" id="state" class="required" label="State/Region" value="<?php echo $shipping_data['state'];?>" placeholder="">
+							<span class="error_div" style="color:red;" id="state_error"></span>
+						</div>	
+					</div>
+					<div class="post-address">
+						<label>City <span class="star-color">*</span></label>
+						<div class="post-address-cell">
+							<input type="text" name="city" id="city" class="required" label="City" value="<?php echo $shipping_data['city'];?>" placeholder="">
+							<span class="error_div" style="color:red;" id="city_error"></span>
+						</div>
+					</div>
+					<div class="post-address">
+						<label>&nbsp</label>
+						<div class="post-address-cell">
+							<button class="btn btn-default">
+								<span>SAVE & CONTINUE</span>
+							</button>
+							<p>* Required Fields</p>
+						</div>	
+					</div>
+					</form>
+				</div>	
+			</div>	
+			<div class="col-md-4">
+				<div class="order">
+					<h2>order summary</h2>
+					<div class="summary-detail">
+						<div class="product">
+							<div class="product-row">
+								<div class="product-cell" style="text-align: left;">
+									Product
+								</div>	
+								<div class="product-cell"  style="width: 55px;">
+									Qty
+								</div>
+								<div class="product-cell">
+									Delivery
+								</div>
+								<div class="product-cell">
+									Price
+								</div>
+							</div>	
+							<div class="product-row">
+								<div class="product-cell" style="text-align: left;">
+									<?php if($get_product_details['image_name']!='0') {?><img src="<?php echo base_url();?>admin/images/uploads/short_thumb/<?php echo $get_product_details['image_name']?>" alt="summary" /><?php } ?>
+								</div>
+								<div class="product-cell">
+									<?php echo $product_order_details['quantity']; ?>
+								</div>
+								<div class="product-cell">
+									3 - 6<br /> Bussiness Day
+								</div>
+								<div class="product-cell">
+									<?php echo $GET_currency_code->currrency_symbol." ".$get_product_details['price']; ?>
+								</div>
+							</div>	
+						</div>	
+						<div class="amount">
+							<div class="sub-total clearfix">
+								<p class="pull-left">Sub total</p>
+								<p class="pull-right"><?php echo $GET_currency_code->currrency_symbol." ".$product_order_details['sub_total']; ?></p>
+							</div>	
+							<div class="sub-total clearfix">
+								<p class="pull-left">Shipping Charges</p>
+								<p class="pull-right red">FREE</p>
+							</div>
+							<div class="sub-total clearfix total">
+								<p class="pull-left">Total</p>
+								<p class="pull-right"><?php echo $GET_currency_code->currrency_symbol." ".$product_order_details['sub_total']; ?></p>
+							</div>
+						</div>	
+					</div>
+				</div>	
+			</div>	
+		</div>
+	</div>
+</section>
+<!-- content End -->
+<script type="text/javascript">
+	$('.qty_value').keyup(function () { 
+            this.value = this.value.replace(/[^0-9]/g,'');
+        });
+	function validate_Cart()
+	{
+		$('.error_div').html('');
+		
+		var element_id,element_value,element_label,error_div,element_validation_type;
+		var required_elements = $('.required');
+		var has_error = 0;
+		required_elements.each(function(){
+		       element_id = $(this).attr('id');
+		       element_value = $(this).val();
+		       element_label = $(this).attr('label');
+		       element_validation_type = $(this).attr('validation_type');
+		       error_div = $("#"+element_id+"_error")
+		       if (element_value.search(/\S/)==-1) {
+			   error_div.html(element_label+' is required.');
+			   has_error++;
+		       }
+		       
+		});
+		
+		if (has_error==0)
+		{
+		    //alert(has_error);
+		    return true;
+		}
+		else
+		{
+		    return false;
+		}
+	}
+</script>

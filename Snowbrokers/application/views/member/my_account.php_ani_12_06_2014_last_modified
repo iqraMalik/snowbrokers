@@ -1,0 +1,565 @@
+<?php
+//echo $this->session->userdata('user_id')."$$$$";
+$dataone_fetch=$this->modelsignup->GetUserDetail($this->session->userdata('user_id'));
+//print_r($dataone_fetch);
+$data=$dataone_fetch[0];
+?>
+<script type="text/javascript">
+function edit_account()
+{
+	document.getElementById("location").removeAttribute("readonly",0);
+	document.getElementById("length").removeAttribute("readonly",0);
+	document.getElementById("weight").removeAttribute("readonly",0);
+	document.getElementById("body_fat").removeAttribute("readonly",0);
+	document.getElementById("date_date").removeAttribute("disabled");
+	document.getElementById("country").removeAttribute("disabled");
+	document.getElementById("state").removeAttribute("disabled");
+	document.getElementById("date_month").removeAttribute("disabled");
+	document.getElementById("date_year").removeAttribute("disabled");
+	document.getElementById("sports1").removeAttribute("disabled");
+	document.getElementById("sports2").removeAttribute("disabled");
+	document.getElementById("sports3").removeAttribute("disabled");
+	document.getElementById("goal1").removeAttribute("disabled");
+	document.getElementById("goal2").removeAttribute("disabled");
+	document.getElementById("goal3").removeAttribute("disabled");
+	document.getElementById("body_type").removeAttribute("disabled");
+	document.getElementById("life_style").removeAttribute("disabled");
+
+	document.getElementById("show_save").src="<?php echo base_url();?>images/save_image.jpeg";
+	document.getElementById( "show_save" ).setAttribute( "onClick", "javascript: save_account();" );
+
+
+
+}
+
+
+</script>
+	
+<script>
+	////SideBar
+	$(window).resize(function() {
+		var win_width = $(window).width();
+		if(win_width >= 991 ) {
+			$(".sidebar-trigger").removeClass("sidebar-trigger-Open");
+			$('.overlay').remove();
+			$('.Innermidbox').removeAttr("style");
+			$(".Right-Profile").removeAttr("style");
+		}
+	});
+	$(document).ready(function() {
+		$(".sidebar-trigger,.overlay").click(function() {
+		var widow_width = $(window).width();
+		if(widow_width < 991 ) {
+				if($('.Innermidbox').hasClass("sidebar-open")){
+					$('.sidebar-trigger').removeClass("sidebar-trigger-Open");
+					$('.Innermidbox').animate({left:-1,}, 100, 'linear');
+					$('.Right-Profile').animate({left:-260,}, 100, 'linear');
+					$('.Innermidbox').removeAttr("style");
+					$('.Innermidbox').removeClass("sidebar-open");
+					$('.overlay').css("display","none");
+					$('.blogouter-right').animate({right:-264,}, 100, 'linear');
+					return false;
+				}
+				else{
+					$('.sidebar-trigger').addClass("sidebar-trigger-Open");
+					$('.Innermidbox').animate({left:260}, 100, 'linear');
+					$('.Right-Profile').animate({left:0}, 100, 'linear');
+					$('.Innermidbox').addClass("sidebar-open");
+					$('.overlay').css("display","block");
+				}
+			}
+		});
+	
+	});
+</script>
+<script>
+	////SideBar
+	$(window).resize(function() {
+		var win_width = $(window).width();
+		if(win_width >= 991 ) {
+			$(".sidebar-trigger-new").removeClass("sidebar-trigger-Open");
+			$('.overlay').remove();
+			$('.Innermidbox').removeAttr("style");
+			$(".blogouter-right").removeAttr("style");
+		}
+	});
+	
+	$(document).ready(function() {
+		$(".sidebar-trigger-new,.overlay").click(function() {
+		var widow_width = $(window).width();
+			if(widow_width < 991 ) {
+				if($('.Innermidbox').hasClass("sidebar-open")){
+					$('.sidebar-trigger-new').removeClass("sidebar-trigger-Open");
+					$('.Innermidbox').animate({right:1,}, 100, 'linear');
+					$('.blogouter-right').animate({right:-260,}, 100, 'linear');
+					$('.Innermidbox').removeAttr("style");
+					$('.Innermidbox').removeClass("sidebar-open");
+					$('.overlay').css("display","none");
+					$('.Right-Profile').animate({left:-260,}, 100, 'linear');
+					return false;
+				}
+				else{
+					
+					$('.Innermidbox').removeAttr("style");
+					$('.sidebar-trigger-new').addClass("sidebar-trigger-Open");
+					$('.Innermidbox').animate({right:260}, 100, 'linear');
+					$('.blogouter-right').animate({right:15}, 100, 'linear');
+					$('.Innermidbox').addClass("sidebar-open");
+					$('.overlay').css("display","block");
+				}
+			}
+		});
+	
+	});
+</script>
+
+
+
+        <section class="MainBodyinner">
+        	<div class="container">
+            	<div class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+        	<div class="row">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="dudh-bar"></span>
+              <span class="dudh-bar"></span>
+              <span class="dudh-bar"></span>
+            </button>
+            </div>
+          <div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="#">Profile</a></li>
+              <li><a href="#">Instructors</a></li>
+              <li><a href="#">Activities</a></li>
+              <li><a href="#">Sports Centers</a></li>
+              <li><a href="#">Groups</a></li>
+              <li><a href="#">events</a></li>
+              <li><a href="#">apps</a></li>   
+              <li><a href="#">Supplements</a></li>
+              <li><a href="#">videos</a></li>                                     
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </div> <!-- /.navbar-->
+      			<div class="row">
+                	<div class="col-xs-12">
+                    	<div class="profilebanner">
+                        	<div class="bannerimg"><img src="<?php echo base_url(); ?>images/profile-banner.jpg" alt="" class="img-responsive"></div>
+                            <div class="BannerLower">
+                            	<div class="profilepic"><img src="<?php echo base_url(); ?>images/profilepic.jpg" alt=""></div>
+                                <div class="profiletxt">
+                                	<div class="profiletxttop">
+                                    	<div class="righticon">
+                                        	<div class="iconright"><a href="#"><img src="<?php echo base_url(); ?>images/edit.png" alt=""></a></div>
+                                            <div class="iconright"><a href="#"><img src="<?php echo base_url(); ?>images/setting.png" alt=""></a></div>
+                                        </div>
+                                        <div class="Profilname">Haris Spahic</div>
+                                    </div>
+                                    <div class="profiletxt_des">
+                                    	Integer in nunc id justo luctus porttitor. In dapibus dapibus turpis nec tincidunt. Vestibulum cursus vitae diam quis accumsan. Morbi pis, scelerisque non augue et. Molestias excepturi sint occaecati cupiditate non provident.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Followarea">
+                        	<div class="followcountarea">
+                            	<div class="Followcountsingle">
+                            		<div class="countnumber">125</div>
+                                    <div class="Followtxt">Followers</div>
+                                </div>
+                                <div class="Followcountsingle">
+                            		<div class="countnumber">750</div>
+                                    <div class="Followtxt">Following</div>
+                                </div>
+                                <div class="Followcountsingle">
+                            		<div class="countnumber">350</div>
+                                    <div class="Followtxt">Photos</div>
+                                </div>
+                                <div class="Followcountsingle">
+                            		<div class="countnumber">26</div>
+                                    <div class="Followtxt">Videos</div>
+                                </div>
+                            </div>
+                            <div class="follow_but"><a href="#">FOLLOW</a></div>
+                        </div>
+                    </div> <!-- /.col-xs-12-->
+                </div> <!-- /.row-->
+                <div class="row">
+                    <button type="button" class="sidebar-trigger">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="dudh-bar"></span>
+                      <span class="dudh-bar"></span>
+                      <span class="dudh-bar"></span>
+                    </button>
+                    <button type="button" class="sidebar-trigger-new">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="dudh-bar"></span>
+                      <span class="dudh-bar"></span>
+                      <span class="dudh-bar"></span>
+                    </button>
+                </div>
+      			<div class="row row-outer">
+                	<div class="col-md-9 col-xs-12">
+                    	<div class="innerblogfull clearfix">
+                            <div class="Right-Profile">
+                            	<div class="blogoutersingle">
+                                	<div class="blogedit"><a href="#"><img src="<?php echo base_url(); ?>images/edit-gray.png" alt=""></a></div>
+                            		<div class="blogExtra">
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Location :</div>
+                                            <div class="RightTxt">New York</div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Age :</div>
+                                            <div class="RightTxt">28 years</div>
+                                        </div>
+                                	</div>
+                                    <div class="blogExtra">
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Sport 1 :</div>
+                                            <div class="RightTxt">Skiing</div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Sport 2 :</div>
+                                            <div class="RightTxt">Dancing</div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Sport 3 :</div>
+                                            <div class="RightTxt">Gym</div>
+                                        </div>
+                                	</div>
+                                    <div class="blogExtra">
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Goal 1 :</div>
+                                            <div class="RightTxt">lose fat</div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Goal 1 :</div>
+                                            <div class="RightTxt">Feel good</div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Goal 1 :</div>
+                                            <div class="RightTxt">Meet people</div>
+                                        </div>
+                                	</div>
+                                    <div class="blogExtra">
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">ength :</div>
+                                            <div class="RightTxt">187</div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Weight :</div>
+                                            <div class="RightTxt">87 kg</div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Body type :</div>
+                                            <div class="RightTxt">Athletic </div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Body fat :</div>
+                                            <div class="RightTxt">11%</div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Lifestyle :</div>
+                                            <div class="RightTxt">Business</div>
+                                        </div>
+                                	</div>
+                                </div>
+                                <div class="blogoutersingle">
+                                	<div class="blogedit"><a href="#"><img src="<?php echo base_url(); ?>images/edit-gray.png" alt=""></a></div>
+                            		<div class="clabtxtx">My Club:</div>
+                                    <div class="clubname">Ceunch Gym- New York</div>
+                                    <div class="clabtxtx">My Instructor:</div>
+                                    <div class="clubname">Tom King</div>
+                                </div>
+                                <div class="blogoutersingle">
+                                	<div class="head">My Visitors</div>
+                                	<div class="commenttop-top">
+                                                <div class="commentimg"><img alt="" src="<?php echo base_url(); ?>images/comment1.jpg"></div>
+                                                <div class="commenttextarea">
+                                                    <div class="commentopfull">
+                                                        <div class="head-small"><a href="#">Jessica singh</a></div>
+                                                    </div>
+                                                    <div class="blogExtrafull">
+                                                        <div class="commenttxt">Location :</div>
+                                                        <div class="RightTxt">Newyork</div>
+                                                    </div>
+                                                    <div class="blogExtrafull">
+                                                        <div class="commenttxt">Sports no :</div>
+                                                        <div class="RightTxt">1</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    <div class="commenttop-top">
+                                                <div class="commentimg"><img alt="" src="<?php echo base_url(); ?>images/comment2.jpg"></div>
+                                                <div class="commenttextarea">
+                                                    <div class="commentopfull">
+                                                        <div class="head-small"><a href="#">Jessica singh</a></div>
+                                                    </div>
+                                                    <div class="blogExtrafull">
+                                                        <div class="commenttxt">Location :</div>
+                                                        <div class="RightTxt">Newyork</div>
+                                                    </div>
+                                                    <div class="blogExtrafull">
+                                                        <div class="commenttxt">Sports no :</div>
+                                                        <div class="RightTxt">1</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    <div class="MorePhoto"><a href="#">More visitors</a></div>
+                                </div>
+                            </div>
+                            <div class="Innermidbox">
+                            	<div class="Innerarea">
+                                <div class="head">Activity Map</div>
+                                <div class="mapicontxt"><img src="<?php echo base_url(); ?>images/mapicon.png" alt="">Sed ut perspiciatis unde omnis</div>
+                                <div class="Maptxt">Dste natus error sit voluptat em accu antium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.
+                                </div>
+                                <div class="map"><img src="<?php echo base_url(); ?>images/map.jpg" alt="" class="img-responsive"></div>
+                            </div>
+                            	<div class="Innerarea">
+                                <div class="head">My Dashboard</div>
+                                <div class="Maptxt">Vitae dicta sunt explicabo Nemo enim ipsam</div>
+                                <div class="map"><img src="<?php echo base_url(); ?>images/coomingsoon.jpg" alt="" class="img-responsive"></div>
+                            </div>
+                            	<div class="Innerarea">
+                                	<div class="blogInnerarea">
+                                    	<div class="commentsingle">
+                                        	<div class="commenttop-top">
+                                                <div class="commentimg"><img src="<?php echo base_url(); ?>images/comment1.jpg" alt=""></div>
+                                                <div class="commenttextarea">
+                                                    <div class="commentopfull">
+                                                        <div class="head"><a href="#">Uidem rerum facilis est et expe</a></div>
+                                                        <div class="Dayscount">7 days ago</div>
+                                                    </div>
+                                                    <div class="commenttxt">Beatae vitae dicta sunt explicabo. Nemo enim ipsam. Umnis iste natus error totam rem apesa quaeinventore.</div>
+                                                </div>
+                                            </div>
+                                            <div class="commentbottom-bottom">
+                                            	<div class="like-icon"><a href="#">Like</a></div>
+                                                <div class="comment-icon"><a href="#">Comment</a></div>
+                                            </div>
+                                      </div>
+                                        <div class="commentsingle">
+                                                <div class="commenttop-top">
+                                                    <div class="commentimg"><img src="<?php echo base_url(); ?>images/comment2.jpg" alt=""></div>
+                                                    <div class="commenttextarea">
+                                                        <div class="commentopfull">
+                                                            <div class="head"><a href="#">Uidem rerum facilis est et expe</a></div>
+                                                            <div class="Dayscount">7 days ago</div>
+                                                        </div>
+                                                        <div class="commenttxt">Beatae vitae dicta sunt explicabo. Nemo enim ipsam. Umnis iste natus error totam rem apesa quaeinventore.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="commentbottom-bottom">
+                                                    <div class="like-icon"><a href="#">Like</a></div>
+                                                    <div class="comment-icon"><a href="#">Comment</a></div>
+                                                </div>
+                                          </div>
+                                        <div class="commentsingle">
+                                                <div class="commenttop-top">
+                                                    <div class="commentimg"><img src="<?php echo base_url(); ?>images/comment1.jpg" alt=""></div>
+                                                    <div class="commenttextarea">
+                                                        <div class="commentopfull">
+                                                            <div class="head"><a href="#">Uidem rerum facilis est et expe</a></div>
+                                                            <div class="Dayscount">7 days ago</div>
+                                                        </div>
+                                                        <div class="commenttxt">Beatae vitae dicta sunt explicabo. Nemo enim ipsam. Umnis iste natus error totam rem apesa quaeinventore.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="commentbottom-bottom">
+                                                    <div class="like-icon"><a href="#">Like</a></div>
+                                                    <div class="comment-icon"><a href="#">Comment</a></div>
+                                                </div>
+                                          </div>
+                                    </div>
+                                    <div class="Wrightcomment">
+                                    	<div class="toptextara">
+                                        	<input type="file" id="input03">
+                                        </div>
+                                    	<textarea name="" cols="1" rows="1" id="text_area" class="commentarea" placeholder="Write comment..."></textarea>
+                                    </div>
+                                    <div class="">
+                                    	<div class="load_but"><a href="#">load more</a></div>
+                                    </div>
+                            	</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 blogouter-right">
+                    	<div class="blogouter">
+                        	<div class="headerouter">
+                            	<div class="head">My Photos</div>
+                                <div class="count">22 photos</div>
+                            </div>
+                            <div class="imageouter">
+                            	<div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img1.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img2.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img3.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img4.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img5.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img6.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img7.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img8.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img9.jpg" alt=""></a></div>
+                            </div>
+                            <div class="MorePhoto"><a href="#">More photos</a></div>
+                        </div>
+                        <div class="blogouter">
+                        	<div class="headerouter">
+                            	<div class="head">My Videos</div>
+                                <div class="count">35 Videos</div>
+                            </div>
+                            <div class="imageouter">
+                            	<div class="Imagesingle">
+                            	  <div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video1.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video2.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video3.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video4.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video5.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video6.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/img7.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video8.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video9.jpg" alt=""></a></div>
+                            </div>
+                            <div class="MorePhoto"><a href="#">More videos</a></div>
+                        </div>
+                        <div class="blogouter-link">
+                        	<div class="headerouter">
+                            	<div class="head">My Links</div>
+                            </div>
+                            <div class="imageouter">
+                            	<ul>
+                                	<li><a href="#">Beatae vitae dicta sunt explicabo. Nemo enim ipsam.</a></li>
+                                    <li><a href="#">Umnis iste natus error totam rem aperiam, eaque ipsa quaeinven- tore.</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="blogouter-link-gray">
+                        	<div class="headerouter">
+                            	<div class="head">Unventore veritatis et quasi architecto beatae</div>
+                             </div>
+                             <div class="description">Molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui offici.Deserunt mollitia animi, id est laborum et dolorum fuga.</div>
+                        </div>
+                    </div>
+                </div> <!-- /.row-->
+            </div> <!-- /.container-->
+        </section> <!-- /.MainBody -->
+        
+     
+
+<script type="text/javascript">
+	function save_account() {
+	
+	//alert(document.getElementById("location").val());
+	var location = document.getElementById("location").value;
+	var length = document.getElementById("length").value;
+	var weight = document.getElementById("weight").value;
+	var body_fat = document.getElementById("body_fat").value;
+	var country = document.getElementById("country").value;
+	var state = document.getElementById("state").value;
+	var date_date = document.getElementById("date_date").value;
+	var date_month = document.getElementById("date_month").value;
+	var date_year = document.getElementById("date_year").value;
+	var sports1 = document.getElementById("sports1").value;
+	var sports2 = document.getElementById("sports2").value;
+	var sports3 = document.getElementById("sports3").value;
+	var goal1 = document.getElementById("goal1").value;
+	var goal2 = document.getElementById("goal2").value;
+	var goal3 = document.getElementById("goal3").value;
+	var body_type = document.getElementById("body_type").value;
+	var life_style = document.getElementById("life_style").value;
+	
+	$.ajax({
+	       url: "<?php echo base_url(); ?>index.php/signup/save_account_detail",
+	       async:false,
+	       data: {
+		country:country,
+		state:state,
+		location:location,
+		length:length,
+		weight:weight,
+		body_fat:body_fat,
+		date_date:date_date,
+		date_month:date_month,
+		date_year:date_year,
+		sports1:sports1,
+		sports2:sports2,
+		sports3:sports3,
+		goal1:goal1,
+		goal2:goal2,
+		goal3:goal3,
+		body_type:body_type,		
+		life_style:life_style
+	       
+	       },
+	       success: function(response) {
+			
+			document.getElementById("country").value=country;
+			document.getElementById("state").value=state;
+		        document.getElementById("location").value=location;
+		        document.getElementById("length").value=length;
+			document.getElementById("weight").value=weight;
+			document.getElementById("body_fat").value=body_fat;
+			document.getElementById("date_date").value=date_date;
+			document.getElementById("date_month").value=date_month;
+			document.getElementById("date_year").value=date_year;
+			document.getElementById("sports1").value=sports1;
+			document.getElementById("sports2").value=sports2;
+			document.getElementById("sports3").value=sports3;
+			document.getElementById("goal1").value=goal1;
+			document.getElementById("goal2").value=goal2;
+			document.getElementById("goal3").value=goal3;
+			document.getElementById("body_type").value=body_type;
+			document.getElementById("life_style").value=life_style;
+			
+			
+			document.getElementById("location").removeAttribute("readonly",1);
+			document.getElementById("length").removeAttribute("readonly",1);
+			document.getElementById("weight").removeAttribute("readonly",1);
+			document.getElementById("body_fat").removeAttribute("readonly",1);
+			document.getElementById("country").disabled=true;
+			document.getElementById("state").disabled=true;
+			document.getElementById("date_date").disabled=true;			
+			document.getElementById("date_month").disabled=true;
+			document.getElementById("date_year").disabled=true;
+			document.getElementById("sports1").disabled=true;
+			document.getElementById("sports2").disabled=true;
+			document.getElementById("sports3").disabled=true;
+			document.getElementById("goal1").disabled=true;
+			document.getElementById("goal2").disabled=true;
+			document.getElementById("goal3").disabled=true;
+			document.getElementById("body_type").disabled=true;
+			document.getElementById("life_style").disabled=true;
+		
+			document.getElementById("show_save").src="<?php echo base_url();?>images/edit_icon.png";
+			document.getElementById( "show_save" ).setAttribute( "onClick", "javascript: edit_account();" );
+		       
+		      }
+		     
+		     
+	       
+	   })
+}
+
+function Select_state(country_id)
+{
+     $.ajax({
+                    url: "<?php echo base_url(); ?>index.php/signup/Select_state",
+                    async:false,
+                    data: {
+                     country_id:country_id
+                    
+                    },
+                    success: function(response) {
+                      
+                           $('#state').html(response);
+                            
+                           }
+                          
+                          
+                    
+                })
+}
+</script>

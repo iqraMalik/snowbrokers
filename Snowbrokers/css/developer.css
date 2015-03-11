@@ -1,0 +1,96 @@
+
+
+.registerModal submit[type="submit"] {
+  background: none repeat scroll 0 0 #edac00;
+  border: medium none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 700;
+  margin-left: 9px;
+  padding: 10px 70px;
+  text-transform: uppercase;
+}
+
+.changecoverouter {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+.changetrigger {
+    background: linear-gradient(to bottom, #BDDD36 0%, #A8C529 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    margin: -244px 2px;
+    padding: 5px 10px;
+}
+
+.changeul {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 3px 0 3px 3px;
+    display: none;
+    margin: 5px 0 0;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    width: auto;
+}
+
+.changetrigger:hover .changeul {
+	display: block !important;
+}
+.changeul li {
+	display: block;
+}
+.changeul li a {
+	display: block;
+	padding: 5px;
+	white-space: nowrap;
+	font-size: 11px;
+	color: #888888;
+}
+.changeul li a:hover {
+	color: #BDDD36;
+}
+
+.hidden {
+	display:none;
+}
+
+.button2 {
+	display: block;
+	padding: 5px;
+	white-space: nowrap;
+	cursor: pointer;
+	font-size: 11px;
+	color: #888888;
+}
+.button2:hover {
+	color: #BDDD36;
+}
+
+.coverimageloader {
+    background: url("../images/cover-loader.gif") no-repeat scroll center center rgba(0, 0, 0, 0.3);
+    bottom: 0;
+    display: none;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 9;
+}
+
+#modal_profile_pic_update {
+   background: none repeat scroll 0 0 #000000;
+   border: 1px solid #FFFFFF;
+   box-shadow: -1px 1px 3px 0 rgba(0, 0, 0, 0.8);
+   padding: 1px 4px 3px;
+   position: absolute;
+   right: 7px;
+   top: 5px;
+}
+body {
+  position: static !important;
+}

@@ -1,0 +1,725 @@
+<?php
+//echo $this->session->userdata('user_id')."$$$$";
+$dataone_fetch=$this->modelsignup->GetUserDetail($this->session->userdata('user_id'));
+//print_r($dataone_fetch);
+$data=$dataone_fetch[0];
+?>
+<script type="text/javascript">
+function edit_account()
+{
+	
+	document.getElementById("location_profile").removeAttribute("readonly",0);
+	document.getElementById("length_profile").removeAttribute("readonly",0);
+	document.getElementById("weight_profile").removeAttribute("readonly",0);
+	document.getElementById("body_fat_profile").removeAttribute("readonly",0);
+	document.getElementById("date_date_profile").removeAttribute("disabled");
+	document.getElementById("country_profile").removeAttribute("disabled");
+	document.getElementById("state_profile").removeAttribute("disabled");
+	document.getElementById("date_month_profile").removeAttribute("disabled");
+	document.getElementById("date_year_profile").removeAttribute("disabled");
+	document.getElementById("sports1_profile").removeAttribute("disabled");
+	document.getElementById("sports2_profile").removeAttribute("disabled");
+	document.getElementById("sports3_profile").removeAttribute("disabled");
+	document.getElementById("goal1_profile").removeAttribute("disabled");
+	document.getElementById("goal2_profile").removeAttribute("disabled");
+	document.getElementById("goal3_profile").removeAttribute("disabled");
+	document.getElementById("body_type_profile").removeAttribute("disabled");
+	document.getElementById("life_style_profile").removeAttribute("disabled");
+
+	document.getElementById("show_save").src="<?php echo base_url();?>images/save_image.jpeg";
+	document.getElementById( "show_save" ).setAttribute( "onClick", "javascript: save_account();" );
+
+
+
+}
+
+ 
+</script>
+<script type="text/javascript">	
+$("#modal-update").live("click", function(){
+	alert(1);
+	$('#myModal-update-account').modal('show');
+});
+
+</script>
+
+        <section class="MainBodyinner">
+        	<div class="container">
+            	<div class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+        	<div class="row">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="dudh-bar"></span>
+              <span class="dudh-bar"></span>
+              <span class="dudh-bar"></span>
+            </button>
+            </div>
+          <div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="#">Profile</a></li>
+              <li><a href="#">Instructors</a></li>
+              <li><a href="#">Activities</a></li>
+              <li><a href="#">Sports Centers</a></li>
+              <li><a href="#">Groups</a></li>
+              <li><a href="#">events</a></li>
+              <li><a href="#">apps</a></li>   
+              <li><a href="#">Supplements</a></li>
+              <li><a href="#">videos</a></li>                                     
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </div> <!-- /.navbar-->
+      			<div class="row">
+                	<div class="col-xs-12">
+                    	<div class="profilebanner">
+                        	<div class="bannerimg"><img src="<?php echo base_url(); ?>images/profile-banner.jpg" alt="" class="img-responsive"></div>
+                            <div class="BannerLower">
+                            	<div class="profilepic"><img src="<?php echo base_url(); ?>images/profilepic.jpg" alt=""></div>
+                                <div class="profiletxt">
+                                	<div class="profiletxttop">
+                                    	<div class="righticon">
+                                        	<div class="iconright"><a href="#"><img src="<?php echo base_url(); ?>images/edit.png" alt=""></a></div>
+                                            <div class="iconright"><a href="#"><img src="<?php echo base_url(); ?>images/setting.png" alt=""></a></div>
+                                        </div>
+                                        <div class="Profilname">Haris Spahic</div>
+                                    </div>
+                                    <div class="profiletxt_des">
+                                    	Integer in nunc id justo luctus porttitor. In dapibus dapibus turpis nec tincidunt. Vestibulum cursus vitae diam quis accumsan. Morbi pis, scelerisque non augue et. Molestias excepturi sint occaecati cupiditate non provident.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Followarea">
+                        	<div class="followcountarea">
+                            	<div class="Followcountsingle">
+                            		<div class="countnumber">125</div>
+                                    <div class="Followtxt">Followers</div>
+                                </div>
+                                <div class="Followcountsingle">
+                            		<div class="countnumber">750</div>
+                                    <div class="Followtxt">Following</div>
+                                </div>
+                                <div class="Followcountsingle">
+                            		<div class="countnumber">350</div>
+                                    <div class="Followtxt">Photos</div>
+                                </div>
+                                <div class="Followcountsingle">
+                            		<div class="countnumber">26</div>
+                                    <div class="Followtxt">Videos</div>
+                                </div>
+                            </div>
+                            <div class="follow_but"><a href="#">FOLLOW</a></div>
+                        </div>
+                    </div> <!-- /.col-xs-12-->
+                </div> <!-- /.row-->
+                <div class="row">
+                    <button type="button" class="sidebar-trigger">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="dudh-bar"></span>
+                      <span class="dudh-bar"></span>
+                      <span class="dudh-bar"></span>
+                    </button>
+                    <button type="button" class="sidebar-trigger-new">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="dudh-bar"></span>
+                      <span class="dudh-bar"></span>
+                      <span class="dudh-bar"></span>
+                    </button>
+                </div>
+      			<div class="row row-outer">
+                	<div class="col-md-9 col-xs-12">
+                    	<div class="innerblogfull clearfix">
+                            <div class="Right-Profile">
+                            	<div class="blogoutersingle">
+                                	<div class="blogedit"><a href="#" id="modal-update"><img src="<?php echo base_url(); ?>images/edit-gray.png" alt="" id="show_save" onclick="edit_account();"></a></div>
+                            		<div class="blogExtra">
+					<div class="blogExtrafull">
+						<div class="LeftTxt">Country :</div>
+						<div class="RightTxt">
+							 <?php $getcountry = $this->modelgoals->GetCountry();?>
+							<select disabled name="country_profile" id="country_profile" label="Country" style="width: 50%;" onChange="Select_state(this.value)">
+							    <option value="">Select Country</option>
+							   <?php                          
+								if(count($getcountry)>0 || $getcountry !=0)
+								{
+								    foreach($getcountry as $key=>$val)
+								    {
+								?>
+								<option value="<?php echo $val->id;?>" <?php if($data->country_id==$val->id){echo "selected";} ?>><?php echo $val->country_name;?></option>
+								<?php
+								    }
+								}
+								?>
+							</select>
+						</div>
+                                        </div>
+					<div class="blogExtrafull">
+                                            <div class="LeftTxt">State :</div>
+                                            <div class="RightTxt">
+						<?php $getstate = $this->modelgoals->GetState($data->country_id);?>
+							    
+							    <select disabled name="state_profile" id="state_profile" label="State" style="width: 50%;">
+								 <?php                          
+								if(count($getstate)>0 || $getstate !=0)
+								{
+								    foreach($getstate as $key=>$val)
+								    {
+								?>
+								<option value="<?php echo $val->id;?>" <?php if($data->state_id==$val->id){echo "selected";} ?>><?php echo $val->state_name;?></option>
+								<?php
+								    }
+								}
+								?>                     
+							     </select>
+				
+							<div id="state_profile_error" class="error_div" style="color:red;"></div>
+					    </div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Location :</div>
+                                            <div class="RightTxt">
+						<input type="text" name="location_profile" readonly id="location_profile" value="<?php echo $data->location;?>"/>
+
+					    </div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Age :</div>
+                                            <div class="RightTxt">
+						<select name="date_date_profile" id="date_date_profile" disabled>
+								<option value="">Select Date</option>
+								<?php
+								$dob = $data->date_of_birth;
+								if($dob !='')
+								{
+									$dob1 = explode('-',$dob);
+								}
+								for($i=0; $i<=31; $i++) {
+								    ?>
+								       <option value="<?php if($i<10){echo $a = '0'.$i;}else{echo $a = $i;}?>" <?php if($dob1[2]==$a){echo "selected";}?>><?php if($i<10){echo '0'.$i;}else{echo $i;}?></option>;
+									<?php
+								}
+								?>
+						</select>
+						<select name="date_month_profile" id="date_month_profile" disabled>
+								<option value="">Select Month</option>
+								<?php
+								    $months = array("", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+								    for ($month = 1; $month <= 12; $month++)
+								    {
+								?>
+									<option value="<?php if($month<10){echo $b ='0'.$month;}else{echo $b = $month;}?>" <?php if($dob1[1]==$b){echo "selected";}?>><?php echo $months[$month];?></option>;
+							   <?php
+								    }
+								       
+							       
+								?>
+							</select>
+							<select name="date_year_profile" id="date_year_profile" disabled>
+								<option value="">Select Year</option>
+								<?php
+								for ($year = 1950; $year <= date("Y"); $year++) {
+								    ?>
+									<option value="<?php echo $year;?>" <?php if($dob1[0]==$year){echo "selected";}?>><?php echo $year;?></option>;
+				    
+								    <?php
+							   
+								}
+								?>
+							</select>
+
+						
+					    </div>
+                                        </div>
+                                	</div>
+                                    <div class="blogExtra">
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Sport 1 :</div>
+                                            <div class="RightTxt">
+						<?php $SportsyData = $this->modelsports->GetAllSports();?>
+							<select name="sports1_profile" id="sports1_profile" class="span9 required" label="Sports1" disabled>
+							    <option value="">Select Sports</option>
+							    <?php
+							  
+							    if(count($SportsyData)>0 || $SportsyData !=0)
+							    {
+								foreach($SportsyData as $key=>$val)
+								{
+							    ?>
+							    <option value="<?php echo $val->id;?>" <?php if($data->sports1==$val->id){echo "selected";}?>><?php echo $val->title;?></option>
+							    <?php
+								}
+							    }
+							    ?>
+							</select>
+					    </div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Sport 2 :</div>
+                                            <div class="RightTxt">
+						<?php $SportsyData2 = $this->modelsports->GetAllSports();?>
+							<select name="sports2_profile" id="sports2_profile" disabled>
+							     <option value="">Select Sports</option>
+							     <?php                          
+								if(count($SportsyData2)>0 || $SportsyData2 !=0)
+								{
+								    foreach($SportsyData2 as $key=>$val)
+								    {
+								?>
+								<option value="<?php echo $val->id;?>" <?php if($data->sports2==$val->id){echo "selected";}?>><?php echo $val->title;?></option>
+								<?php
+								    }
+								}
+								?>
+							</select>
+						
+					    </div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Sport 3 :</div>
+                                            <div class="RightTxt">
+						<?php $SportsyData3 = $this->modelsports->GetAllSports();?>
+						<select name="sports3_profile" id="sports3_profile" disabled>
+							     <option value="">Select Sports</option>
+							   <?php                          
+								if(count($SportsyData3)>0 || $SportsyData3 !=0)
+								{
+								    foreach($SportsyData3 as $key=>$val)
+								    {
+								?>
+								<option value="<?php echo $val->id;?>" <?php if($data->sports3==$val->id){echo "selected";}?>><?php echo $val->title;?></option>
+								<?php
+								    }
+								}
+								?>
+						</select>
+					    </div>
+                                        </div>
+                                	</div>
+                                    <div class="blogExtra">
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Goal 1 :</div>
+                                            <div class="RightTxt">
+						<?php $GoalsData = $this->modelgoals->GetAllGoals();?>
+							<select name="goal1_profile" id="goal1_profile" class="span9 required" label="Goal1" disabled>
+							     <option value="">Select Goals</option>
+							     <?php                          
+								if(count($GoalsData)>0 || $GoalsData !=0)
+								{
+								    foreach($GoalsData as $key=>$val)
+								    {
+								?>
+								<option value="<?php echo $val->id;?>" <?php if($data->goal1==$val->id){echo "selected";}?>><?php echo $val->title;?></option>
+								<?php
+								    }
+								}
+								?>
+							</select>
+					    </div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Goal 2 :</div>
+                                            <div class="RightTxt">
+						<?php $GoalsData2 = $this->modelgoals->GetAllGoals();?>
+							<select name="goal2_profile" id="goal2_profile" disabled>
+							    <option value="">Select Goals</option>
+							   <?php                          
+								if(count($GoalsData2)>0 || $GoalsData2 !=0)
+								{
+								    foreach($GoalsData2 as $key=>$val)
+								    {
+								?>
+								<option value="<?php echo $val->id;?>" <?php if($data->goal2==$val->id){echo "selected";}?>><?php echo $val->title;?></option>
+								<?php
+								    }
+								}
+								?>
+							</select>
+					    </div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Goal 3 :</div>
+                                            <div class="RightTxt">
+						<?php $GoalsData3 = $this->modelgoals->GetAllGoals();?>
+							<select name="goal3_profile" id="goal3_profile" disabled>
+							    <option value="">Select Goals</option>
+							   <?php                          
+								if(count($GoalsData3)>0 || $GoalsData3 !=0)
+								{
+								    foreach($GoalsData3 as $key=>$val)
+								    {
+								?>
+								<option value="<?php echo $val->id;?>" <?php if($data->goal3==$val->id){echo "selected";}?>><?php echo $val->title;?></option>
+								<?php
+								    }
+								}
+								?>
+							</select>
+					    </div>
+                                        </div>
+                                	</div>
+                                    <div class="blogExtra">
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Length :</div>
+                                            <div class="RightTxt">
+						<input type="text" name="length_profile" readonly id="length_profile" value="<?php echo $data->tall;?>"/>
+
+					    </div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Weight :</div>
+                                            <div class="RightTxt">
+						<input type="text" name="weight_profile" readonly id="weight_profile" value="<?php echo $data->weigh;?>"/>
+
+					    </div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Body type :</div>
+                                            <div class="RightTxt">
+						<?php $bodytype = $this->modelgoals->GetAllBodytype();?>
+							<select name="body_type_profile" id="body_type_profile" disabled>
+							    <option value="">Select Bodytype</option>
+							    <?php                          
+								if(count($bodytype)>0 || $bodytype !=0)
+								{
+								    foreach($bodytype as $key=>$val)
+								    {
+								?>
+								<option value="<?php echo $val->id;?>" <?php if($data->bodytype==$val->id){echo "selected";}?>><?php echo $val->body_type;?></option>
+								<?php
+								    }
+								}
+								?>
+							</select>
+					    </div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Body fat :</div>
+                                            <div class="RightTxt">
+						<input type="text" name="body_fat_profile" readonly id="body_fat_profile" value="<?php echo $data->fat;?>"/>
+
+					    </div>
+                                        </div>
+                                        <div class="blogExtrafull">
+                                            <div class="LeftTxt">Lifestyle :</div>
+                                            <div class="RightTxt">
+						<?php $lifestyle = $this->modelgoals->GetAllLifestyle();?>
+							<select name="life_style_profile" id="life_style_profile" disabled>                            
+							    <option value="">Select Lifestyle</option>
+							    <?php                          
+								if(count($lifestyle)>0 || $lifestyle !=0)
+								{
+								    foreach($lifestyle as $key=>$val)
+								    {
+								?>
+								<option value="<?php echo $val->id;?>" <?php if($data->lifestyle==$val->id){echo "selected";}?>><?php echo $val->name;?></option>
+								<?php
+								    }
+								}
+								?>
+							</select>
+					    </div>
+                                        </div>
+                                	</div>
+                                </div>
+                                <div class="blogoutersingle">
+                                	<div class="blogedit"><a href="#"><img src="<?php echo base_url(); ?>images/edit-gray.png" alt=""></a></div>
+                            		<div class="clabtxtx">My Club:</div>
+                                    <div class="clubname">Ceunch Gym- New York</div>
+                                    <div class="clabtxtx">My Instructor:</div>
+                                    <div class="clubname">Tom King</div>
+                                </div>
+                                <div class="blogoutersingle">
+                                	<div class="head">My Visitors</div>
+                                	<div class="commenttop-top">
+                                                <div class="commentimg"><img alt="" src="<?php echo base_url(); ?>images/comment1.jpg"></div>
+                                                <div class="commenttextarea">
+                                                    <div class="commentopfull">
+                                                        <div class="head-small"><a href="#">Jessica singh</a></div>
+                                                    </div>
+                                                    <div class="blogExtrafull">
+                                                        <div class="commenttxt">Location :</div>
+                                                        <div class="RightTxt">Newyork</div>
+                                                    </div>
+                                                    <div class="blogExtrafull">
+                                                        <div class="commenttxt">Sports no :</div>
+                                                        <div class="RightTxt">1</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    <div class="commenttop-top">
+                                                <div class="commentimg"><img alt="" src="<?php echo base_url(); ?>images/comment2.jpg"></div>
+                                                <div class="commenttextarea">
+                                                    <div class="commentopfull">
+                                                        <div class="head-small"><a href="#">Jessica singh</a></div>
+                                                    </div>
+                                                    <div class="blogExtrafull">
+                                                        <div class="commenttxt">Location :</div>
+                                                        <div class="RightTxt">Newyork</div>
+                                                    </div>
+                                                    <div class="blogExtrafull">
+                                                        <div class="commenttxt">Sports no :</div>
+                                                        <div class="RightTxt">1</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    <div class="MorePhoto"><a href="#">More visitors</a></div>
+                                </div>
+                            </div>
+                            <div class="Innermidbox">
+                            	<div class="Innerarea">
+                                <div class="head">Activity Map</div>
+                                <div class="mapicontxt"><img src="<?php echo base_url(); ?>images/mapicon.png" alt="">Sed ut perspiciatis unde omnis</div>
+                                <div class="Maptxt">Dste natus error sit voluptat em accu antium dolore mque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.
+                                </div>
+                                <div class="map"><img src="<?php echo base_url(); ?>images/map.jpg" alt="" class="img-responsive"></div>
+                            </div>
+                            	<div class="Innerarea">
+                                <div class="head">My Dashboard</div>
+                                <div class="Maptxt">Vitae dicta sunt explicabo Nemo enim ipsam</div>
+                                <div class="map"><img src="<?php echo base_url(); ?>images/coomingsoon.jpg" alt="" class="img-responsive"></div>
+                            </div>
+                            	<div class="Innerarea">
+                                	<div class="blogInnerarea">
+                                    	<div class="commentsingle">
+                                        	<div class="commenttop-top">
+                                                <div class="commentimg"><img src="<?php echo base_url(); ?>images/comment1.jpg" alt=""></div>
+                                                <div class="commenttextarea">
+                                                    <div class="commentopfull">
+                                                        <div class="head"><a href="#">Uidem rerum facilis est et expe</a></div>
+                                                        <div class="Dayscount">7 days ago</div>
+                                                    </div>
+                                                    <div class="commenttxt">Beatae vitae dicta sunt explicabo. Nemo enim ipsam. Umnis iste natus error totam rem apesa quaeinventore.</div>
+                                                </div>
+                                            </div>
+                                            <div class="commentbottom-bottom">
+                                            	<div class="like-icon"><a href="#">Like</a></div>
+                                                <div class="comment-icon"><a href="#">Comment</a></div>
+                                            </div>
+                                      </div>
+                                        <div class="commentsingle">
+                                                <div class="commenttop-top">
+                                                    <div class="commentimg"><img src="<?php echo base_url(); ?>images/comment2.jpg" alt=""></div>
+                                                    <div class="commenttextarea">
+                                                        <div class="commentopfull">
+                                                            <div class="head"><a href="#">Uidem rerum facilis est et expe</a></div>
+                                                            <div class="Dayscount">7 days ago</div>
+                                                        </div>
+                                                        <div class="commenttxt">Beatae vitae dicta sunt explicabo. Nemo enim ipsam. Umnis iste natus error totam rem apesa quaeinventore.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="commentbottom-bottom">
+                                                    <div class="like-icon"><a href="#">Like</a></div>
+                                                    <div class="comment-icon"><a href="#">Comment</a></div>
+                                                </div>
+                                          </div>
+                                        <div class="commentsingle">
+                                                <div class="commenttop-top">
+                                                    <div class="commentimg"><img src="<?php echo base_url(); ?>images/comment1.jpg" alt=""></div>
+                                                    <div class="commenttextarea">
+                                                        <div class="commentopfull">
+                                                            <div class="head"><a href="#">Uidem rerum facilis est et expe</a></div>
+                                                            <div class="Dayscount">7 days ago</div>
+                                                        </div>
+                                                        <div class="commenttxt">Beatae vitae dicta sunt explicabo. Nemo enim ipsam. Umnis iste natus error totam rem apesa quaeinventore.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="commentbottom-bottom">
+                                                    <div class="like-icon"><a href="#">Like</a></div>
+                                                    <div class="comment-icon"><a href="#">Comment</a></div>
+                                                </div>
+                                          </div>
+                                    </div>
+                                    <div class="Wrightcomment">
+                                    	<div class="toptextara">
+                                        	<input type="file" id="input03">
+                                        </div>
+                                    	<textarea name="" cols="1" rows="1" id="text_area" class="commentarea" placeholder="Write comment..."></textarea>
+                                    </div>
+                                    <div class="">
+                                    	<div class="load_but"><a href="#">load more</a></div>
+                                    </div>
+                            	</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 blogouter-right">
+                    	<div class="blogouter">
+                        	<div class="headerouter">
+                            	<div class="head">My Photos</div>
+                                <div class="count">22 photos</div>
+                            </div>
+                            <div class="imageouter">
+                            	<div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img1.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img2.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img3.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img4.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img5.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img6.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img7.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img8.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><a href="#"><img src="<?php echo base_url(); ?>images/img9.jpg" alt=""></a></div>
+                            </div>
+                            <div class="MorePhoto"><a href="#">More photos</a></div>
+                        </div>
+                        <div class="blogouter">
+                        	<div class="headerouter">
+                            	<div class="head">My Videos</div>
+                                <div class="count">35 Videos</div>
+                            </div>
+                            <div class="imageouter">
+                            	<div class="Imagesingle">
+                            	  <div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video1.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video2.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video3.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video4.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video5.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video6.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/img7.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video8.jpg" alt=""></a></div>
+                                <div class="Imagesingle"><div class="videoicon"><a href="#"><img src="<?php echo base_url(); ?>images/videoicon.png" alt=""></a></div><a href="#"><img src="images/video9.jpg" alt=""></a></div>
+                            </div>
+                            <div class="MorePhoto"><a href="#">More videos</a></div>
+                        </div>
+                        <div class="blogouter-link">
+                        	<div class="headerouter">
+                            	<div class="head">My Links</div>
+                            </div>
+                            <div class="imageouter">
+                            	<ul>
+                                	<li><a href="#">Beatae vitae dicta sunt explicabo. Nemo enim ipsam.</a></li>
+                                    <li><a href="#">Umnis iste natus error totam rem aperiam, eaque ipsa quaeinven- tore.</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="blogouter-link-gray">
+                        	<div class="headerouter">
+                            	<div class="head">Unventore veritatis et quasi architecto beatae</div>
+                             </div>
+                             <div class="description">Molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui offici.Deserunt mollitia animi, id est laborum et dolorum fuga.</div>
+                        </div>
+                    </div>
+                </div> <!-- /.row-->
+            </div> <!-- /.container-->
+        </section> <!-- /.MainBody -->
+        
+     
+
+<script type="text/javascript">
+	function save_account() {
+	
+	//alert(document.getElementById("location").val());
+	var location = document.getElementById("location_profile").value;
+	var length = document.getElementById("length_profile").value;
+	var weight = document.getElementById("weight_profile").value;
+	var body_fat = document.getElementById("body_fat_profile").value;
+	var country = document.getElementById("country_profile").value;
+	var state = document.getElementById("state_profile").value;
+	var date_date = document.getElementById("date_date_profile").value;
+	var date_month = document.getElementById("date_month_profile").value;
+	var date_year = document.getElementById("date_year_profile").value;
+	var sports1 = document.getElementById("sports1_profile").value;
+	var sports2 = document.getElementById("sports2_profile").value;
+	var sports3 = document.getElementById("sports3_profile").value;
+	var goal1 = document.getElementById("goal1_profile").value;
+	var goal2 = document.getElementById("goal2_profile").value;
+	var goal3 = document.getElementById("goal3_profile").value;
+	var body_type = document.getElementById("body_type_profile").value;
+	var life_style = document.getElementById("life_style_profile").value;
+	
+	$.ajax({
+	       url: "<?php echo base_url(); ?>index.php/signup/save_account_detail",
+	       async:false,
+	       data: {
+		country:country,
+		state:state,
+		location:location,
+		length:length,
+		weight:weight,
+		body_fat:body_fat,
+		date_date:date_date,
+		date_month:date_month,
+		date_year:date_year,
+		sports1:sports1,
+		sports2:sports2,
+		sports3:sports3,
+		goal1:goal1,
+		goal2:goal2,
+		goal3:goal3,
+		body_type:body_type,		
+		life_style:life_style
+	       
+	       },
+	       success: function(response) {
+			
+			document.getElementById("country_profile").value=country;
+			document.getElementById("state_profile").value=state;
+		        document.getElementById("location_profile").value=location;
+		        document.getElementById("length_profile").value=length;
+			document.getElementById("weight_profile").value=weight;
+			document.getElementById("body_fat_profile").value=body_fat;
+			document.getElementById("date_date_profile").value=date_date;
+			document.getElementById("date_month_profile").value=date_month;
+			document.getElementById("date_year_profile").value=date_year;
+			document.getElementById("sports1_profile").value=sports1;
+			document.getElementById("sports2_profile").value=sports2;
+			document.getElementById("sports3_profile").value=sports3;
+			document.getElementById("goal1_profile").value=goal1;
+			document.getElementById("goal2_profile").value=goal2;
+			document.getElementById("goal3_profile").value=goal3;
+			document.getElementById("body_type_profile").value=body_type;
+			document.getElementById("life_style_profile").value=life_style;
+			
+			
+			/*document.getElementById("location_profile").removeAttribute("readonly",1);
+			document.getElementById("length_profile").removeAttribute("readonly",1);
+			document.getElementById("weight_profile").removeAttribute("readonly",1);
+			document.getElementById("body_fat_profile").removeAttribute("readonly",1);*/
+			document.getElementById("location_profile").readOnly = true;body_fat_profile
+			document.getElementById("length_profile").readOnly = true;
+			document.getElementById("weight_profile").readOnly = true;
+			document.getElementById("body_fat_profile").readOnly = true;
+			document.getElementById("country_profile").disabled=true;
+			document.getElementById("state_profile").disabled=true;
+			document.getElementById("date_date_profile").disabled=true;			
+			document.getElementById("date_month_profile").disabled=true;
+			document.getElementById("date_year_profile").disabled=true;
+			document.getElementById("sports1_profile").disabled=true;
+			document.getElementById("sports2_profile").disabled=true;
+			document.getElementById("sports3_profile").disabled=true;
+			document.getElementById("goal1_profile").disabled=true;
+			document.getElementById("goal2_profile").disabled=true;
+			document.getElementById("goal3_profile").disabled=true;
+			document.getElementById("body_type_profile").disabled=true;
+			document.getElementById("life_style_profile").disabled=true;
+		
+			document.getElementById("show_save").src="<?php echo base_url();?>images/edit-gray.png";
+			document.getElementById( "show_save" ).setAttribute( "onClick", "javascript: edit_account();" );
+		       
+		      }
+		     
+		     
+	       
+	   })
+}
+
+function Select_state(country_id)
+{
+     $.ajax({
+                    url: "<?php echo base_url(); ?>index.php/signup/Select_state_profile",
+                    async:false,
+                    data: {
+                     country_id:country_id
+                    
+                    },
+                    success: function(response) {
+                      
+                           $('#state_profile').html(response);
+                            
+                           }
+                          
+                          
+                    
+                })
+}
+</script>

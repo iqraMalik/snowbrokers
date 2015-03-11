@@ -1,0 +1,127 @@
+ 
+ 
+ <section id="intro">
+    	<div class="flexslider" >
+                    <ul class="slides">
+                        <?php
+                         $slider=$this->modelhome->get_slider();
+                        if($slider !="")
+                        {
+                         foreach($slider as $sliderpages)
+                         {
+                        ?>
+                        <li>
+                        	<div class="item active">
+            <div class="sliderimg" style="background-image:url(<?php echo base_url().'application_admin/slider/thumbnail/'.$sliderpages->image;?>););"></div>
+                            <div class="sliderTop">
+                              <div class="container">
+                                <div class="carousel-caption">
+                                  <h2 class="col-md-8 col-sm-10 col-xs-11"><?php $title=$sliderpages->title;
+				  echo $bodyhome=str_replace(array('[BOLD]','[/BOLD]'),array('<span>','</span>'),$title);
+				  ?></h2>
+                                  <p class="col-sm-10 col-xs-11"><?php echo strip_tags($sliderpages->message);?></p>
+                                 </div>
+                              </div>
+                              </div>
+                            </div> <!-- /.item -->
+                        </li>
+                        <?php }} ?>
+                      	<!--<li>
+                        <div class="item">
+        	<div class="sliderimg" style="background-image:url(images/banner2.jpg);"></div>
+           <div class="sliderTop"> 
+          	<div class="container">
+            <div class="carousel-caption">
+              <h2 class="col-md-8 col-sm-10 col-xs-11">Lorem ipsum, <span>Gonsectet abore</span></h2>
+              <p class="col-sm-10 col-xs-11">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magndolores eos qui ratione.</p>
+             </div>
+          </div>
+          </div>
+        </div> <!-- /.item -->
+    <!--</li>-->
+                        <!--<li>
+                        	<div class="item">
+          <div class="sliderimg" style="background-image:url(images/banner3.jpg);"></div>
+          <div class="sliderTop"> 
+          <div class="container">
+           <div class="carousel-caption">
+              <h2 class="col-md-8 col-sm-10 col-xs-11">Lorem ipsum, <span>Gonsectet abore</span></h2>
+              <p class="col-sm-10 col-xs-11">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magndolores eos qui ratione.</p>
+             </div>
+          </div>
+          </div>
+        </div> <!-- /.item -->
+       <!-- </li>
+                        <li>
+                        	<div class="item">
+          <div class="sliderimg" style="background-image:url(images/banner4.jpg);"></div>
+          <div class="sliderTop"> 
+          <div class="container">
+           <div class="carousel-caption">
+              <h2 class="col-md-8 col-sm-10 col-xs-11">Lorem ipsum, <span>Gonsectet abore</span></h2>
+              <p class="col-sm-10 col-xs-11">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magndolores eos qui ratione.</p>
+             </div>
+          </div>
+          </div>
+        </div>--> <!-- /.item -->
+                        <!--</li>
+                        <li>
+                        	<div class="item">
+          <div class="sliderimg" style="background-image:url(images/banner5.jpg);"></div>
+          <div class="sliderTop"> 
+          <div class="container">
+           <div class="carousel-caption">
+              <h2 class="col-md-8 col-sm-10 col-xs-11">Lorem ipsum, <span>Gonsectet abore</span></h2>
+              <p class="col-sm-10 col-xs-11">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magndolores eos qui ratione.</p>
+             </div>
+          </div>
+          </div>
+        </div> <!-- /.item -->
+                        <!--</li>-->
+                      </ul>
+				</div>
+    	</section>
+    	<section class="MainBody">
+	      <?php 
+	      $hometitle=$this->modelhome->get_home();
+                        
+	      ?>
+        	<div class="container">
+            	<h3><?php echo $hometitle->article_title;?></h3>
+                <div class="BodyTxt"><?php echo $hometitle->a_desc;?></div>
+                <div class="row">
+		     <?php 
+	      echo $imagebox=$this->modelhome->get_imagebox();
+                        
+	      ?>
+                	<!--<div class="col-sm-4 col-xs-4">
+                    	<div class="imagebox">
+                        	<img src="images/image1.jpg" class="img-responsive" alt="">
+                        	<div class="mask"></div>
+                        	<div class="cornerbox">
+                            	<a href="#">Members </a>
+                            </div>
+                        </div>
+                    </div>--> <!-- /.col-sm-4 col-xs-12 -->
+                    <!--<div class="col-sm-4 col-xs-4">
+                    	<div class="imagebox">
+                        	<img src="images/image2.jpg" class="img-responsive" alt="">
+                        	<div class="mask"></div>
+                        	<div class="cornerbox">
+                            	<a href="#">Instructors</a>
+                            </div>
+                        </div>
+                    </div>--> <!-- /.col-sm-4 col-xs-12 -->
+                    <!--<div class="col-sm-4 col-xs-4">
+                    	<div class="imagebox">
+                        	<img src="images/image3.jpg" class="img-responsive" alt="">
+                        	<div class="mask"></div>
+                        	<div class="cornerbox">
+                            	<a href="#">Sports Centres</a>
+                            </div>
+                        </div>
+                    </div> <!-- /.col-sm-4 col-xs-12 -->
+                <!--</div>--> <!-- /.row -->
+            </div> <!-- /.container -->
+        </section> <!-- /.MainBody -->
+        
